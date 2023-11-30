@@ -1,0 +1,25 @@
+# crie um pipeline no GitHub Actions que será executado quando uma issue for criara
+# e criará um comentário de Boas Vindas na Issue criada
+
+name: Boas Vindas
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Boas Vindas
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Seja bem vindo ao nosso projeto!'
+            })
+
