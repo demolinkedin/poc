@@ -7,9 +7,12 @@ on:
   issues:
     types: [opened]
 
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - name: Boas Vindas
         uses: actions/github-script@v3
